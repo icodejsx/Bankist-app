@@ -80,6 +80,12 @@ const displayMovements = function (movements){
 displayMovements(account1.movements)
 
 
+const user = 'steven Thomas Willaims ';
+const username = user.toLowerCase().split(' ').map(name => 
+name[0]).join('');
+
+console.log(username)
+
 
 
 
@@ -191,5 +197,5 @@ for(const mov of movements) movementsUsdFor.push( mov * eurToUsd);
 console.log(movementsUsdFor); 
 
 movements.map((mov, i, arr) => {
-  
+
 })
