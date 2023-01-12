@@ -79,14 +79,20 @@ const displayMovements = function (movements){
 }
 displayMovements(account1.movements)
 
+const createUsernames = function (accs){
+  accs.forEach(function (acc){
+     acc.username = acc.owner
+       .toLowerCase()
+       .split(' ')
+       .map(name => name[0])
+       .join('');
+  })
 
-const user = 'steven Thomas Willaims ';
-const username = user.toLowerCase().split(' ').map(name => 
-name[0]).join('');
+ 
+};
 
-console.log(username)
-
-
+createUsernames(accounts);
+console.log(accounts);
 
 
 
@@ -181,21 +187,37 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // checkDogs([2,3,4,5,6,7] , [1,2,3,4,5,6,7])
 
 
-const eurToUsd = 1.1;
+// const eurToUsd = 1.1;
 
-//  const movementsUsd = movements.map(function (move ){
-//   return move * eurToUsd;
-// });
- const movementsUsd = movements.map(move => move * eurToUsd);
+// //  const movementsUsd = movements.map(function (move ){
+// //   return move * eurToUsd;
+// // });
+//  const movementsUsd = movements.map(move => move * eurToUsd);
+
+// console.log(movements);
+// console.log(movementsUsd);
+
+
+// const movementsUsdFor =[]
+// for(const mov of movements) movementsUsdFor.push( mov * eurToUsd);
+// console.log(movementsUsdFor); 
+
+// movements.map((mov, i, arr) => {
+
+// })
+
+
+const deposits = movements.filter(function(mov){
+  return mov > 0 
+})
 
 console.log(movements);
-console.log(movementsUsd);
+console.log(deposits);
 
+const depositsFor = [];
+for (const mov of movements) if (mov > 0)  depositsFor.push(mov);
+console.log(depositsFor)
 
-const movementsUsdFor =[]
-for(const mov of movements) movementsUsdFor.push( mov * eurToUsd);
-console.log(movementsUsdFor); 
-
-movements.map((mov, i, arr) => {
-
-})
+const withdrawals = [];
+for (const mov of movements) if (mov < 0) withdrawals.push(mov);
+console.log(withdrawals)
