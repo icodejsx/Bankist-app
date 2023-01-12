@@ -70,14 +70,50 @@ const displayMovements = function (movements){
     
     const html = `
        <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+          <div class="movements__value">${mov}€</div>
         </div>
     `;
     containerMovements.insertAdjacentHTML('afterbegin', html)
   })
 }
 displayMovements(account1.movements)
+
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+
+calcDisplayBalance(account1.movements)
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const outGoing = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outGoing)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i,arr) => {
+      return int  >= 1
+    })
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+
+
+};
+calcDisplaySummary(account1.movements);
+
+
 
 const createUsernames = function (accs){
   accs.forEach(function (acc){
@@ -92,7 +128,9 @@ const createUsernames = function (accs){
 };
 
 createUsernames(accounts);
-console.log(accounts);
+
+
+
 
 
 
@@ -207,17 +245,55 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // })
 
 
-const deposits = movements.filter(function(mov){
-  return mov > 0 
-})
+// const deposits = movements.filter(function(mov){
+//   return mov > 0 
+// })
 
+// console.log(movements);
+// console.log(deposits);
+
+// const depositsFor = [];
+// for (const mov of movements) if (mov > 0)  depositsFor.push(mov);
+// console.log(depositsFor)
+
+// const withdrawals = [];
+// for (const mov of movements) if (mov < 0) withdrawals.push(mov);
+// console.log(withdrawals)
+
+
+// console.log(movements)
+
+// // accumulator is like a snowball
+// const balance = movements.reduce((acc, cur,) => acc + cur  
+// , 0 )
+
+// console.log(balance)
+
+// let blance2 = 0 ; 
+// for(const mov of movements) blance2 += mov;
+// console.log(blance2);
+
+// // maxiom value 
+// const max = movements.reduce((acc, mov) => {
+//   if (acc > mov) return acc;
+//   else return mov;
+// },movements[0])
+// console.log(max);
+
+// const eurToUsd = 1.1;
+
+// // PIPLINE
+//  const totalDepositUsd = movements
+//    .filter(mov => mov > 0)
+//    .map(mov => mov * eurToUsd)
+//    .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositUsd)
+
+const firstWithdraw = movements.find(mov => mov < 0) 
 console.log(movements);
-console.log(deposits);
+console.log(firstWithdraw);
 
-const depositsFor = [];
-for (const mov of movements) if (mov > 0)  depositsFor.push(mov);
-console.log(depositsFor)
+console.log(accounts);
 
-const withdrawals = [];
-for (const mov of movements) if (mov < 0) withdrawals.push(mov);
-console.log(withdrawals)
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
