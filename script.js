@@ -182,7 +182,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 //   } else{
 //     console.log(`you withdrew ${Math.abs(movement)}`);
 //   }
-// }
+// }s
 
 //  console.log('--------forEach--------')
 // movements.forEach(function (movement) {
