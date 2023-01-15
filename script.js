@@ -174,7 +174,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // Reverse
 
-// arr = ['a', 'b', 'c', 'd', 'e'];
+arr = ['a', 'b', 'c', 'd', 'e'];
 
 // for (const movement of movements){
 //   if (movement > 0 ) {
